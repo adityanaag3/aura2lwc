@@ -8,10 +8,7 @@
                     <lightning-formatted-number value={product.UnitPrice} format-style="currency" currency-code="USD"></lightning-formatted-number>
                 </div>
                 <div class="slds-float_right slds-align_absolute-center">
-                    <button class="slds-button slds-button_success" onclick={addToCart}
-                            data-price={product.UnitPrice} data-pricebookentryid={product.Id}
-                            data-id={product.Product2.Id} data-name={product.Product2.Name}
-                            data-pricebookid={product.Pricebook2Id}>Add to Cart</button>
+                    <button class="slds-button slds-button_success" onclick={addToCart}>Add to Cart</button>
                 </div>
             </div>
         </li>
