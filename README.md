@@ -9,9 +9,9 @@ Product Catalog is used by users to place orders. A screen will allow them to fi
 ## Deployment Instructions
 
 - Run `git clone https://github.com/adityanaag3/aura2lwc.git` in the Terminal or Command Prompt
-- Open the folder aura2lwc in VS Code.
+- Open the folder `aura2lwc` in VS Code.
 - To deploy to a Scratch org,  choose **Create Default Scratch Org** from the Command Palette, follow the prompts, and once the scratch org is created, run the command `sfdx force:source:push`, and once the code is pushed, run `sfdx force:org:open` to open the org.
-- To deploy to a Dev Org, choose **Authorize an org** from the command palette, follow the prompts to finish authorizing. Then, choose **Set a default org** from the command palatte, and choose the org you just authorized. Then, run `sfdx force:org:open` to open the org.
+- To deploy to a Dev Org, choose **Authorize an org** from the command palette, follow the prompts to finish authorizing. Then, choose **Set a default org** from the command palatte, and choose the org you just authorized. Deploy the code by right-clicking on the `force-app` folder, and selecting **SFDX: Deploy Source to Org**. Then, run `sfdx force:org:open` to open the org.
 
 ## Using the App
 
