@@ -1,0 +1,49 @@
+<aura:component controller="MyCartCtrl" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    
+    <aura:attribute name="cartItems" type="List"/>
+    <aura:handler event="c:AddToCartEvent" action="{!c.addedToCart}"/>
+    
+    <lightning:card title="Cart">
+        <div class="slds-m-around_medium">
+            <aura:if isTrue="{!v.cartItems.length > 0}">
+                <lightning:recordEditForm
+                                        onload="{!c.handleOnload}"
+                                        onsuccess="{!c.onSuccessOrderCreation}"
+                                        objectApiName="Order">
+
+                    <lightning:messages />
+
+                    <div class="slds-text-title_caps heading-margin">Order Details</div>
+
+                    <lightning:inputField fieldName="AccountId" required="true" label="Account"/>
+                    <lightning:inputField fieldName="EffectiveDate" required="true"/>
+                    <lightning:inputField aura:id="statusInputField" fieldName="Status"/>
+                    <lightning:inputField aura:id="pricebook2IdInputField" fieldName="Pricebook2Id" class="slds-hide"/>
+                    
+                    <div class="slds-text-title_caps heading-margin">Product(s) in Cart</div>
+
+                    <aura:iteration items="{!v.cartItems}" var="cartItem" indexVar="index">
+                        <div class="slds-clearfix productRow">
+                            <div class="slds-float_left">
+                                {!cartItem.productName}
+                            </div>
+                            <div class="slds-float_right">
+                                <button class="slds-button" data-index="{!index}" onclick="{!c.onClickDelete}">Remove</button>
+                            </div>
+                        </div>
+                    </aura:iteration>
+                    
+                    <button class="slds-button slds-button_brand" type="submit">Checkout</button>
+                
+                </lightning:recordEditForm>
+
+                <aura:set attribute="else">
+                    <div class="slds-text-heading_small slds-text-align_center">
+                        <img src="{!$Resource.emptyCart}" />
+                    </div>
+                </aura:set>
+
+            </aura:if>
+        </div>
+    </lightning:card>
+</aura:component>

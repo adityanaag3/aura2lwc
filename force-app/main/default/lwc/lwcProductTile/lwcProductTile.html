@@ -1,0 +1,19 @@
+<template>
+    <ul class="slds-has-dividers_bottom slds-has-block-links_space" key={product.Id}>
+        <li class="slds-item board-item productRow">
+            <div class="slds-clearfix">
+                <div class="slds-float_left slds-align_absolute-center">
+                    <a onclick={navigateToDetail} target="_blank">{product.Product2.Name}</a>
+                    Price: 
+                    <lightning-formatted-number value={product.UnitPrice} format-style="currency" currency-code="USD"></lightning-formatted-number>
+                </div>
+                <div class="slds-float_right slds-align_absolute-center">
+                    <button class="slds-button slds-button_success" onclick={addToCart}
+                            data-price={product.UnitPrice} data-pricebookentryid={product.Id}
+                            data-id={product.Product2.Id} data-name={product.Product2.Name}
+                            data-pricebookid={product.Pricebook2Id}>Add to Cart</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</template>

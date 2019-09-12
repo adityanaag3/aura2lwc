@@ -1,0 +1,37 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="ProductCatalogCtrl">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="products" type="PricebookEntry[]"/>
+    <aura:registerEvent name="AddToCartEvent" type="c:AddToCartEvent" />
+    
+    <lightning:card title="Available Products">
+        <div class="slds-m-around_medium">
+            <div onkeyup="{! c.handleKeyUp }">
+                <lightning:input
+                                aura:id="enter-search"
+                                name="enter-search"
+                                label="Search"
+                                type="search"
+                                />
+                
+            </div>
+            <aura:iteration items="{!v.products}" var="product" indexVar="index">
+                <ul class="slds-has-dividers_bottom slds-has-block-links_space">
+                    <li class="slds-item board-item productRow">
+                        <div class="slds-clearfix">
+                            <div class="slds-float_left slds-align_absolute-center">
+                                <a href="{!'/'+product.Product2.Id}" target="_blank">{!product.Product2.Name}</a>
+                                (Price:<ui:outputCurrency value="{!product.UnitPrice}"/>)
+                            </div>
+                            <div class="slds-float_right slds-align_absolute-center">
+                                <button class="slds-button slds-button_success" onclick="{!c.onClickAddToCart}" 
+                                        data-price="{!product.UnitPrice}" data-pricebookentryid="{!product.Id}" 
+                                        data-id="{!product.Product2.Id}" data-name="{!product.Product2.Name}" 
+                                        data-pricebookid="{!product.Pricebook2Id}" >Add to Cart</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </aura:iteration>
+        </div>
+    </lightning:card>
+</aura:component>

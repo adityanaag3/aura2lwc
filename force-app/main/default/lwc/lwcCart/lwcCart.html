@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="Cart">
+        <div class="slds-m-around_medium">
+            <template if:true={isCartEmpty}>
+                    <div class="slds-text-heading_small slds-text-align_center">
+                        <img src={emptyCartUrl}/>
+                    </div>
+            </template>
+            <template if:false={isCartEmpty}>
+
+                <lightning-record-edit-form object-api-name="Order" onsuccess={handleSuccess}>
+                    <lightning-messages></lightning-messages> 
+                    
+                    <div class="slds-text-title_caps heading-margin">Order Details</div>
+                    
+                    <lightning-input-field field-name={accountIdField}></lightning-input-field>
+                    <lightning-input-field field-name={startDateField}></lightning-input-field>
+                    <lightning-input-field field-name={orderStatusField}></lightning-input-field>
+                    <lightning-input-field field-name={priceBookField} value={defaultPricebookId} class="slds-hide"></lightning-input-field>
+
+                    <div class="slds-text-title_caps heading-margin">Product(s) in Cart</div>
+                    
+                    <template for:each={cartItems} for:item=cartItem for:index=indexVar>
+                        <div class="slds-clearfix productRow" key={cartItem.productId}>
+                            <div class="slds-float_left">
+                                {cartItem.productName}
+                            </div>
+                            <div class="slds-float_right">
+                                <lightning-button data-indexvar={indexVar} variant="base" label="Remove" title="Remove" onclick={removeFromCart} class="slds-m-left_x-small"></lightning-button>
+                            </div>
+                        </div>
+                    </template>
+
+                    <lightning-button class="slds-m-top_small"
+                            type="submit"
+                            label="Checkout"
+                            variant="brand"></lightning-button>
+                </lightning-record-edit-form>
+            </template>
+        </div>
+    </lightning-card>
+</template>

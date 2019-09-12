@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Available Products">
+        <div class="slds-m-around_medium">
+            <lightning-input name="enter-search"
+                            label="Search"
+                            type="search"
+                            onchange={handleChange}
+                            ></lightning-input>
+            <template if:true={products.data}>
+                <template for:each={products.data} for:item=product>
+                    <c-lwc-product-tile key={product.Id} product={product}></c-lwc-product-tile>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>
